@@ -17,10 +17,6 @@ public record DeliveryWindow(LocalDate startDate, LocalDate endDate) {
         if (checkDate == null) {
             throw new IllegalArgumentException("CheckDate cannot be null");
         }
-        if (checkDate.isBefore(startDate) || checkDate.isAfter(endDate)) {
-            return false;
-            throw new IllegalArgumentException("Delivery window start date cannot be after end date");
-        }
-        return true;
+        return !checkDate.isBefore(startDate) && !checkDate.isAfter(endDate);
     }
 }
